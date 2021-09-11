@@ -9,8 +9,6 @@ ReactDOM.render(
 
   <React.StrictMode>
     <App />
-      <button id="my-button" className="button">Connect Backend</button>
-
   </React.StrictMode>,
   document.getElementById('root')
 
@@ -26,8 +24,8 @@ async function myTestFunction(){
       //  .then(data => console.log(data));
 
     const response = await fetch('/api/todos')
-    //const users = await response.json()
-    //if(response.ok) this.setState({users})
+    const users = await response.json()
+    //if(response.ok) this.setState({text})
     console.log(response);
     console.log("fetch end");
 }

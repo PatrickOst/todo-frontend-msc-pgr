@@ -1,28 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { ToDoOutput } from './ToDoOutput'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      count: 3,
+      text: '1234',
+        users: 'users'
+    }
+  }
 
-      </header>
+  render() {
+    const { text, count } = this.state
 
-    </div>
-  );
+    return (
+        <div>
+          <button onClick={this.decrement} disabled={count <= 0}>
+            -
+          </button>
+          <span>{this.state.count}</span>
+          <button onClick={this.increment}>+</button>
+          <div>
+            <input onChange={this.updateText} value={this.state.text} />
+          </div>
+          <button id="my-button" className="button">Connect Backend</button>
+          <ToDoOutput text={this.state.users} count={count} />
+        </div>
+    )
+  }
+
+  increment = () => {
+    this.setState({ count: this.state.count + 1 })
+  }
+
+  decrement = () => {
+    this.setState(prevState => ({ count: prevState.count - 1 }))
+  }
+
+  updateText = event => {
+    const value = event.target.value
+    this.setState({ text: value })
+  }
+
+  async componentDidMount(){
+      const response = await fetch('/api/todos')
+      const users = await response.json()
+      if(response.ok) this.setState({users: users})
+  }
+
+
 }
 
+export default App
 
-export default App;
