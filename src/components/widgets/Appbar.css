@@ -1,0 +1,21 @@
+.appbar__nav {
+	padding: 20px 50px;
+	font-size: 20px;
+	background: #1d3557;
+	box-shadow: 0 0 5px #1d3557;
+}
+
+.appbar__link {
+	margin: 0 10px;
+	font-size: 20px;
+	text-decoration: none;
+	color: #f1faee;
+}
+
+.appbar__link:hover {
+	color: #a8dadc;
+}
+
+.appbar__link--active {
+	color: #a8dadc;
+}
