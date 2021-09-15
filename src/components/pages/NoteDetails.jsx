@@ -77,7 +77,33 @@ export class NoteDetails extends Component {
 		}
 	}
 
+	testFunction = (target, value) => {
+		console.log("testFunction läuft");
+		console.log(target);
+		console.log(value);
+		if(value === ''){
+			value = moment();
+			const DateTimeConverted = moment(value).format("YYYYMMDDThhmmss")
+			console.log(DateTimeConverted);
+			this.updateDateTime("erstelltAm")
+			const updatedNote = Object.assign(this.state.note, {
+				[target]: DateTimeConverted
+			})
+			this.setState({ note: updatedNote })
+		}else{
+			value = moment(value);
+		}
+		console.log("Value neu");
+		console.log(value);
 
+
+		return(
+			<Datetime
+				value={value}
+				initialValue={value}
+			/>
+		)
+	}
 
 
 
@@ -95,12 +121,8 @@ export class NoteDetails extends Component {
 					onChange={this.update('id')}
 				/>
 				<div>Erstellungsdatum</div>
-				<Datetime
-					inputProps={inputProps}
-					value={note.erstelltAm ? moment(note.erstelltAm) : moment()}
-					initialValue={note.erstelltAm ? moment(note.erstelltAm) : moment()}
-					onChange={this.updateDateTime("erstelltAm")}
-				/>
+				<div>{this.testFunction("erstelltAm", note.erstelltAm)}</div>
+
 				<TextInput
 					label="Titel"
 					value={note.title}
