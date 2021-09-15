@@ -26,7 +26,7 @@ export class Overview extends Component {
 						<div>{u.erstelltAm}</div>
 						<div>{u.prio}</div>
 						<div>{u.erledigenBis}</div>
-						<Link to={`/users/${u.id}`}>Bearbeiten</Link>
+						<Link to={`/note/${u.id}`}>Bearbeiten</Link>
 					</Fragment>
 				))}
 			</div>

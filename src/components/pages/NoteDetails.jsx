@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { createNewNote, NotesUrl } from '../../models/note'
 import { Button } from '../controls/Button'
 import { TextInput } from '../controls/TextInput'
-import DateTimePicker from 'react-datetime-picker';
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import moment from "moment"
@@ -17,14 +16,11 @@ export class NoteDetails extends Component {
 	}
 
 	async componentDidMount() {
+		console.log("NoteDetails loading");
 		const id = this.props.match.params.id
 		if (id) {
 			this.fetchNote(id)
 		}
-	}
-
-	async componentDidUpdate(prevProps) {
-		console.log("componentDidUpdate");
 	}
 
 	fetchNote = async id => {
@@ -37,7 +33,7 @@ export class NoteDetails extends Component {
 	update = property => value => {
 		let DateTimeConverted = value
 		if(property==='erledigenBis' || property==='erstelltAm'){
-			DateTimeConverted = moment(value).format("YYYYMMDDThhmmss")
+			DateTimeConverted = moment(value).format()
 		}
 		const updatedNote = Object.assign(this.state.note, {
 			[property]: DateTimeConverted
@@ -62,9 +58,9 @@ export class NoteDetails extends Component {
 	}
 
 	insertDateTimePicker = (target, value, disabled) => {
-		if(value === ''){
+		if(value === ''){		// Unterscheidung neue Notiz oder bestehende bearbeiten
 			value = moment();
-			const DateTimeConverted = moment(value).format("YYYYMMDDThhmmss")
+			const DateTimeConverted = moment(value).format()
 			Object.assign(this.state.note, {[target]: DateTimeConverted})
 		}else{
 			value = moment(value);
@@ -72,8 +68,6 @@ export class NoteDetails extends Component {
 		let inputProps = {
 			disabled: disabled
 		};
-		console.log("disabled = " + disabled);
-		console.log(target)
 		return(
 			<Datetime
 				inputProps={inputProps}
@@ -83,7 +77,6 @@ export class NoteDetails extends Component {
 			/>
 		)
 	}
-
 
 	render() {
 		const { loading, note, error } = this.state
@@ -117,10 +110,9 @@ export class NoteDetails extends Component {
 				/>
 				<div>Zu erledigen bis</div>
 				<div>{this.insertDateTimePicker("erledigenBis", note.erledigenBis, false)}</div>
-				<div>{note.erledigenBis}</div>
-					<Button disabled={loading} onClick={() => this.save(note)}>
-						{note.id ? 'Speichern' : 'Erstellen'}
-					</Button>
+				<Button disabled={loading} onClick={() => this.save(note)}>
+					{note.id ? 'Speichern' : 'Erstellen'}
+				</Button>
 				<div>{error}</div>
 			</div>
 		)
