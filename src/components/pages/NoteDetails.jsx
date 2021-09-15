@@ -6,6 +6,7 @@ import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import moment from "moment"
 import 'moment/locale/de';
+import StarRatings from 'react-star-ratings'
 
 
 export class NoteDetails extends Component {
@@ -102,11 +103,15 @@ export class NoteDetails extends Component {
 					disabled={loading}
 					onChange={this.update('beschreibung')}
 				/>
-				<TextInput
-					label="Prio"
-					value={note.prio}
-					disabled={loading}
-					onChange={this.update('prio')}
+				<StarRatings
+					rating={Number(note.prio)}
+					starRatedColor="MediumSeaGreen"
+					starEmptyColor="grey"
+					starHoverColor="MediumSeaGreen"
+					starDimension="25px"
+					changeRating={this.update('prio')}
+					numberOfStars={5}
+					name='rating'
 				/>
 				<div>Zu erledigen bis</div>
 				<div>{this.insertDateTimePicker("erledigenBis", note.erledigenBis, false)}</div>

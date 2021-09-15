@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { NotesUrl } from '../../models/note'
 import './Overview.css'
-
+import StarRatings from "react-star-ratings";
 
 export class Overview extends Component {
 	state = { notes: [] }
@@ -12,6 +12,8 @@ export class Overview extends Component {
 		const notes = await response.json()
 		this.setState({ notes })
 	}
+
+
 
 	render() {
 		const { notes } = this.state
@@ -24,7 +26,15 @@ export class Overview extends Component {
 						<div>{u.title}</div>
 						<div>{u.beschreibung}</div>
 						<div>{u.erstelltAm}</div>
-						<div>{u.prio}</div>
+						<StarRatings
+							rating={Number(u.prio)}
+							starRatedColor="MediumSeaGreen"
+							starEmptyColor="grey"
+							starHoverColor="MediumSeaGreen"
+							starDimension="15px"
+							numberOfStars={5}
+							name='rating'
+						/>
 						<div>{u.erledigenBis}</div>
 						<Link to={`/note/${u.id}`}>Bearbeiten</Link>
 					</Fragment>
