@@ -7,6 +7,8 @@ import Datetime from "react-datetime";
 import moment from "moment"
 import 'moment/locale/de';
 import StarRatings from 'react-star-ratings'
+import {Overview} from "./Overview";
+import {Link} from "react-router-dom";
 
 
 export class NoteDetails extends Component {
@@ -43,6 +45,7 @@ export class NoteDetails extends Component {
 	}
 
 	save = async note => {
+		console.log("save runs");
 		this.setState({ error:'', loading: true })
 		const response = await fetch(`${NotesUrl}/${note.id ?? ''}`, {
 			method: note.id ? 'put' : 'post',
@@ -55,6 +58,26 @@ export class NoteDetails extends Component {
 			const update = await response.json()
 			const notes = Object.assign(this.state.note, update)
 			this.setState({ error: 'Erfolgreich gespeichert', loading: false, notes })
+		}
+	}
+
+	deleting = async note => {
+		console.log("deleting runs");
+		console.log(note);
+		this.setState({ error:'', loading: true })
+		const response = await fetch(`${NotesUrl}/delete/${note.id ?? ''}`, {
+			method: 'put',
+			headers: new Headers({'content-type':'application/json'}),
+			body: JSON.stringify(note)
+		})
+		console.log("deleting runs 2");
+		console.log(response.status)
+		if (response.status >= 300) {
+			this.setState({ error: 'Fehler aufgetreten!', loading: false })
+		} else {
+			const update = await response.json()
+			const notes = Object.assign(this.state.note, update)
+			this.setState({ error: 'Erfolgreich gelöscht', loading: false, notes })
 		}
 	}
 
@@ -78,6 +101,22 @@ export class NoteDetails extends Component {
 			/>
 		)
 	}
+
+	showDeleteButton = (note) => {
+		console.log("handleHide");
+		console.log(note)
+		//this.setState({isActive: false});
+		if(note.id===''){
+			return(
+				<div></div>
+			)
+		}else{
+			return(
+				<Button  visible='false' disabled={this.state.loading} onClick={() => this.deleting(note)}>{'Löschen'}</Button>
+			)
+		}
+
+	};
 
 	render() {
 		const { loading, note, error } = this.state
@@ -115,9 +154,12 @@ export class NoteDetails extends Component {
 				/>
 				<div>Zu erledigen bis</div>
 				<div>{this.insertDateTimePicker("erledigenBis", note.erledigenBis, false)}</div>
-				<Button disabled={loading} onClick={() => this.save(note)}>
-					{note.id ? 'Speichern' : 'Erstellen'}
-				</Button>
+				<Link to={`/`}>
+					<Button disabled={loading} onClick={() => this.save(note)}>
+						{note.id ? 'Speichern' : 'Erstellen'}
+					</Button>
+					{this.showDeleteButton(note)}
+				</Link>
 				<div>{error}</div>
 			</div>
 		)
