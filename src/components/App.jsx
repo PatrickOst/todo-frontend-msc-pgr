@@ -11,8 +11,8 @@ export const App = () => (
 		<main className="app__main">
 			<Switch>
 				<Route exact path="/" component={Overview} />
-				<Route exact path="/users/:id" component={NoteDetails} />
-				<Route exact path="/new" component={NoteDetails} />
+				<Route key="modify-note" exact path="/note/:id" component={NoteDetails} />
+				<Route key="new-note" exact path="/newNote" component={NoteDetails} />
 				<Redirect to="/" />
 			</Switch>
 		</main>

@@ -13,7 +13,7 @@ export const Appbar = () => (
 			Übersicht
 		</NavLink>
 		<NavLink
-			to="/new"
+			to="/newNote"
 			className="appbar__link"
 			activeClassName="appbar__link--active"
 			exact

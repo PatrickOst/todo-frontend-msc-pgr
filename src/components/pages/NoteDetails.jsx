@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { createNewNote, NotesUrl } from '../../models/note'
 import { Button } from '../controls/Button'
 import { TextInput } from '../controls/TextInput'
-import DateTimePicker from 'react-datetime-picker';
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import moment from "moment"
@@ -17,14 +16,11 @@ export class NoteDetails extends Component {
 	}
 
 	async componentDidMount() {
+		console.log("NoteDetails loading");
 		const id = this.props.match.params.id
 		if (id) {
 			this.fetchNote(id)
 		}
-	}
-
-	async componentDidUpdate(prevProps) {
-
 	}
 
 	fetchNote = async id => {
@@ -34,34 +30,18 @@ export class NoteDetails extends Component {
 		this.setState({ loading: false, note})
 	}
 
-
-	updateDateTime = property => value => {
-		console.log("update ausgeführt");
-		console.log(property);
-		console.log(moment(value).format("YYYYMMDDThhmmss"));
-		const DateTimeConverted = moment(value).format("YYYYMMDDThhmmss")
-		console.log(DateTimeConverted);
-		//console.log(moment(moment(value).format()));
+	update = property => value => {
+		let DateTimeConverted = value
+		if(property==='erledigenBis' || property==='erstelltAm'){
+			DateTimeConverted = moment(value).format()
+		}
 		const updatedNote = Object.assign(this.state.note, {
 			[property]: DateTimeConverted
 		})
 		this.setState({ note: updatedNote })
-		console.log(updatedNote)
-	}
-
-	update = property => value => {
-		console.log("update ausgeführt");
-		console.log(value);
-		const updatedNote = Object.assign(this.state.note, {
-			[property]: value
-		})
-		this.setState({ note: updatedNote })
-		console.log(updatedNote);
 	}
 
 	save = async note => {
-		console.log("Save ausgeführt");
-		console.log();
 		this.setState({ error:'', loading: true })
 		const response = await fetch(`${NotesUrl}/${note.id ?? ''}`, {
 			method: note.id ? 'put' : 'post',
@@ -77,15 +57,29 @@ export class NoteDetails extends Component {
 		}
 	}
 
-
-
-
+	insertDateTimePicker = (target, value, disabled) => {
+		if(value === ''){		// Unterscheidung neue Notiz oder bestehende bearbeiten
+			value = moment();
+			const DateTimeConverted = moment(value).format()
+			Object.assign(this.state.note, {[target]: DateTimeConverted})
+		}else{
+			value = moment(value);
+		}
+		let inputProps = {
+			disabled: disabled
+		};
+		return(
+			<Datetime
+				inputProps={inputProps}
+				value={value}
+				initialValue={value}
+				onChange={this.update(target)}
+			/>
+		)
+	}
 
 	render() {
 		const { loading, note, error } = this.state
-		let inputProps = {
-			//disabled: true
-		};
 		return (
 			<div>
 				<TextInput
@@ -95,12 +89,7 @@ export class NoteDetails extends Component {
 					onChange={this.update('id')}
 				/>
 				<div>Erstellungsdatum</div>
-				<Datetime
-					inputProps={inputProps}
-					value={note.erstelltAm ? moment(note.erstelltAm) : moment()}
-					initialValue={note.erstelltAm ? moment(note.erstelltAm) : moment()}
-					onChange={this.updateDateTime("erstelltAm")}
-				/>
+				<div>{this.insertDateTimePicker("erstelltAm", note.erstelltAm, true)}</div>
 				<TextInput
 					label="Titel"
 					value={note.title}
@@ -120,15 +109,10 @@ export class NoteDetails extends Component {
 					onChange={this.update('prio')}
 				/>
 				<div>Zu erledigen bis</div>
-				<div>{note.erledigenBis}</div>
-                <Datetime
-					initialValue={moment(note.erledigenBis)}
-					value={moment(note.erledigenBis)}
-					onChange={this.updateDateTime("erledigenBis")}
-				/>
-					<Button disabled={loading} onClick={() => this.save(note)}>
-						{note.id ? 'Speichern' : 'Erstellen'}
-					</Button>
+				<div>{this.insertDateTimePicker("erledigenBis", note.erledigenBis, false)}</div>
+				<Button disabled={loading} onClick={() => this.save(note)}>
+					{note.id ? 'Speichern' : 'Erstellen'}
+				</Button>
 				<div>{error}</div>
 			</div>
 		)
