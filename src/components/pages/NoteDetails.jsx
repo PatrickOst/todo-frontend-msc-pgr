@@ -46,6 +46,8 @@ export class NoteDetails extends Component {
 
 	save = async note => {
 		console.log("save runs");
+		console.log(note);
+		console.log(note.id);
 		this.setState({ error:'', loading: true })
 		const response = await fetch(`${NotesUrl}/${note.id ?? ''}`, {
 			method: note.id ? 'put' : 'post',
