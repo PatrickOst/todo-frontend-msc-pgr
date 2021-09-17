@@ -19,7 +19,6 @@ export class NoteDetails extends Component {
 	}
 
 	async componentDidMount() {
-		console.log("NoteDetails loading");
 		const id = this.props.match.params.id
 		if (id) {
 			this.fetchNote(id)
@@ -45,9 +44,6 @@ export class NoteDetails extends Component {
 	}
 
 	save = async note => {
-		console.log("save runs");
-		console.log(note);
-		console.log(note.id);
 		this.setState({ error:'', loading: true })
 		const response = await fetch(`${NotesUrl}/${note.id ?? ''}`, {
 			method: note.id ? 'put' : 'post',
@@ -64,16 +60,12 @@ export class NoteDetails extends Component {
 	}
 
 	deleting = async note => {
-		console.log("deleting runs");
-		console.log(note);
 		this.setState({ error:'', loading: true })
 		const response = await fetch(`${NotesUrl}/delete/${note.id ?? ''}`, {
 			method: 'put',
 			headers: new Headers({'content-type':'application/json'}),
 			body: JSON.stringify(note)
 		})
-		console.log("deleting runs 2");
-		console.log(response.status)
 		if (response.status >= 300) {
 			this.setState({ error: 'Fehler aufgetreten!', loading: false })
 		} else {
@@ -105,9 +97,6 @@ export class NoteDetails extends Component {
 	}
 
 	showDeleteButton = (note) => {
-		console.log("handleHide");
-		console.log(note)
-		//this.setState({isActive: false});
 		if(note.id===''){
 			return(
 				<div></div>
@@ -117,7 +106,6 @@ export class NoteDetails extends Component {
 				<Button  visible='false' disabled={this.state.loading} onClick={() => this.deleting(note)}>{'Löschen'}</Button>
 			)
 		}
-
 	};
 
 	render() {
