@@ -3,6 +3,7 @@
 	font-size: 20px;
 	background: #1d3557;
 	box-shadow: 0 0 5px #1d3557;
+	background-color: var(--nav-background-color);
 }
 
 .appbar__link {
@@ -19,3 +20,95 @@
 .appbar__link--active {
 	color: #a8dadc;
 }
+
+/* Style Switcher */
+
+body{
+	background-color: var(--main-background-color);
+	color: var(--main-font);
+}
+
+.toggle-switch {
+	display: flex;
+}
+
+.dark {
+	--main-background-color: #3C3F41;
+	--main-font: white;
+	--div-font: white;
+	--div-background-color: #101820FF;
+	--button-background-color: #F2AA4CFF;
+	--button-hover-background: #DAA03DFF;
+	--button-font: black;
+
+	--nav-background-color: #2B2B2B;
+}
+
+.light {
+	--main-background: white;
+	--main-font: black;
+	--div-font: #2B2B2B;
+	--div-background-color: #e7e7e7;
+	--button-background-color: #4CAF50;
+	--button-hover-background: #45a049;
+	--button-font: white;
+
+	--nav-background-color: #1d3557;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.switch input {
+	opacity: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: hsl(230, 22%, 74%);;
+	transition: 0.4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 20px;
+	width: 20px;
+	left: 32px;
+	bottom: 5px;
+	background-color: #fff;
+	transition: 0.4s;
+}
+
+input:checked + .slider {
+	background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+}
+
+input:checked + .slider:before {
+	transform: translateX(-24px);
+}
+
+.slider,
+.round {
+	border-radius: 34px;
+}
+
+.round::before {
+	border-radius: 50%;
+}
+
+input:checked + .round::before {
+	background-color: hsl(230, 17%, 14%);
+}
+
