@@ -6,5 +6,6 @@ export const createNewNote = () => ({
 	beschreibung: '',
 	erstelltAm: '',
 	prio: '',
-	erledigenBis: ''
+	erledigenBis: '',
+	erledigt: ''
 })
