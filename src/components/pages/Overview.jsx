@@ -67,6 +67,19 @@ class ViewSortedByFinishDate extends React.Component {
 		this.save(index)
 	}
 
+	textErledigenBis (pDate) {
+		const dateFormat = new Date(pDate);
+		switch (dateFormat.getDate()){
+			case (new Date().getDate()):    pDate = "Heute";         break;
+			case (new Date().getDate()+1):  pDate = "Morgen";        break;
+			case (new Date().getDate()+2):  pDate = "Übermorgen";    break;
+			case (new Date().getDate()-1):  pDate = "Gestern";       break;
+			case (new Date().getDate()-2):  pDate = "Vorgestern";    break;
+			default: pDate = dateFormat.toLocaleDateString();
+		}
+		return pDate;
+	}
+
 	render() {
 		const { notes } = this.state
 
@@ -74,7 +87,7 @@ class ViewSortedByFinishDate extends React.Component {
 			<div className="overview__container">
 				{notes.sort((a, b) => a.erledigenBis > b.erledigenBis ? 1:-1).map(u => (
 					<Fragment key={u.id}>
-						<div>{u.erledigenBis}</div>
+						<div>{this.textErledigenBis(u.erledigenBis)}</div>
 						<input className="note-title__container" type='text' name='title' placeholder='Note title' value={u.title} readOnly></input>
 						<StarRatings
 							rating={Number(u.prio)}
@@ -144,6 +157,19 @@ class ViewSortedByCreatedDate extends React.Component {
 		this.save(index)
 	}
 
+	textErledigenBis (pDate) {
+		const dateFormat = new Date(pDate);
+		switch (dateFormat.getDate()){
+			case (new Date().getDate()):    pDate = "Heute";         break;
+			case (new Date().getDate()+1):  pDate = "Morgen";        break;
+			case (new Date().getDate()+2):  pDate = "Übermorgen";    break;
+			case (new Date().getDate()-1):  pDate = "Gestern";       break;
+			case (new Date().getDate()-2):  pDate = "Vorgestern";    break;
+			default: pDate = dateFormat.toLocaleDateString();
+		}
+		return pDate;
+	}
+
 	render() {
 		const { notes } = this.state
 
@@ -151,7 +177,7 @@ class ViewSortedByCreatedDate extends React.Component {
 			<div className="overview__container">
 				{notes.sort((a, b) => a.erstelltAm > b.erstelltAm ? 1:-1).map(u => (
 					<Fragment key={u.id}>
-						<div>{u.erledigenBis}</div>
+						<div>{this.textErledigenBis(u.erledigenBis)}</div>
 						<input className="note-title__container" type='text' name='title' placeholder='Note title' value={u.title} readOnly></input>
 						<StarRatings
 							rating={Number(u.prio)}
@@ -221,6 +247,19 @@ class ViewSortedByImportance extends React.Component {
 		this.save(index)
 	}
 
+	textErledigenBis (pDate) {
+		const dateFormat = new Date(pDate);
+		switch (dateFormat.getDate()){
+			case (new Date().getDate()):    pDate = "Heute";         break;
+			case (new Date().getDate()+1):  pDate = "Morgen";        break;
+			case (new Date().getDate()+2):  pDate = "Übermorgen";    break;
+			case (new Date().getDate()-1):  pDate = "Gestern";       break;
+			case (new Date().getDate()-2):  pDate = "Vorgestern";    break;
+			default: pDate = dateFormat.toLocaleDateString();
+		}
+		return pDate;
+	}
+
 	render() {
 		const { notes } = this.state
 
@@ -228,7 +267,7 @@ class ViewSortedByImportance extends React.Component {
 			<div className="overview__container">
 				{notes.sort((a, b) => a.prio > b.prio ? 1:-1).map(u => (
 					<Fragment key={u.id}>
-						<div>{u.erledigenBis}</div>
+						<div>{this.textErledigenBis(u.erledigenBis)}</div>
 						<input className="note-title__container" type='text' name='title' placeholder='Note title' value={u.title} readOnly></input>
 						<StarRatings
 							rating={Number(u.prio)}

@@ -21,6 +21,7 @@ export class NoteDetails extends Component {
 		if (id) {
 			this.fetchNote(id)
 		}
+		this.releaseOrLockSaveButton()
 	}
 
 	fetchNote = async id => {
@@ -49,6 +50,7 @@ export class NoteDetails extends Component {
 	}
 
 	save = async note => {
+		console.log("save runs")
 		this.setState({ error:'', loading: true })
 		const response = await fetch(`${NotesUrl}/${note.id ?? ''}`, {
 			method: note.id ? 'put' : 'post',
