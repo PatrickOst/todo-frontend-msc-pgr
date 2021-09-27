@@ -9,11 +9,10 @@ import 'moment/locale/de';
 import StarRatings from 'react-star-ratings'
 import {Link} from "react-router-dom";
 
-
 export class NoteDetails extends Component {
-
 	state = {
 		loading: false,
+		titleEmpty: true,
 		note: createNewNote(),
 	}
 
@@ -29,9 +28,11 @@ export class NoteDetails extends Component {
 		const response = await fetch(`${NotesUrl}/${id}`)
 		const note = await response.json()
 		this.setState({ loading: false, note})
+		this.releaseOrLockSaveButton()
 	}
 
 	update = property => value => {
+		console.log("update ausgeführt");
 		let DateTimeConverted = value
 		if(property==='erledigenBis' || property==='erstelltAm'){
 			DateTimeConverted = moment(value).format()
@@ -40,6 +41,11 @@ export class NoteDetails extends Component {
 			[property]: DateTimeConverted
 		})
 		this.setState({ note: updatedNote })
+		this.releaseOrLockSaveButton()
+	}
+
+	releaseOrLockSaveButton(){
+			this.setState({ titleEmpty: (this.state.note.title.length < 1 ? true : false) })
 	}
 
 	save = async note => {
@@ -108,7 +114,7 @@ export class NoteDetails extends Component {
 	};
 
 	render() {
-		const { loading, note, error } = this.state
+		const { loading,titleEmpty, note, error } = this.state
 		return (
 			<div>
 				<TextInput
@@ -121,6 +127,7 @@ export class NoteDetails extends Component {
 				<div>{this.insertDateTimePicker("erstelltAm", note.erstelltAm, true)}</div>
 				<TextInput
 					label="Titel"
+					required = {true}
 					value={note.title}
 					disabled={loading}
 					onChange={this.update('title')}
@@ -144,7 +151,7 @@ export class NoteDetails extends Component {
 				<div>Zu erledigen bis</div>
 				<div>{this.insertDateTimePicker("erledigenBis", note.erledigenBis, false)}</div>
 				<Link to={`/`}>
-					<Button disabled={loading} onClick={() => this.save(note)}>
+					<Button disabled={titleEmpty} onClick={() => this.save(note)}>
 						{note.id ? 'Speichern' : 'Erstellen'}
 					</Button>
 					{this.showDeleteButton(note)}
