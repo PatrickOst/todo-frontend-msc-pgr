@@ -7,7 +7,6 @@ import Datetime from "react-datetime";
 import moment from "moment"
 import 'moment/locale/de';
 import StarRatings from 'react-star-ratings'
-import {Overview} from "./Overview";
 import {Link} from "react-router-dom";
 
 
