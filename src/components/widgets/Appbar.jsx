@@ -1,10 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Appbar.css'
-
+import {ThemeSwitcher} from "../controls/ThemeSwitcher";
+import {CheckBox} from "../controls/CheckBox";
 
 
 export class Appbar extends React.Component {
+
+	state = { darkFlag: [] }
 
 	handleSortedByClick = (sortedBy) => {
 		localStorage.setItem("sortedBy", sortedBy);
@@ -66,19 +69,23 @@ export class Appbar extends React.Component {
 					>
 						Show finished
 					</NavLink>
-					<ThemeSwitcher />
+					<ThemeSwitcher
+						defaultChecked = {this.getTheme()}
+						onChange={this.handleThemeSwitchClick("ThemeSwitcher")}
+					/>
 				</nav>
 			</div>
 
 		);
-
 	}
-}
 
-class ThemeSwitcher extends React.Component {
+	getTheme(){
+		document.body.classList.add(localStorage.getItem("theme").toString());
+		return (localStorage.getItem("theme").toString()==="light" ? false : true)
+	}
 
-	handleThemeSwitchClick (){
-		if (localStorage.getItem("theme") === null || localStorage.getItem("theme") === "light"){
+	handleThemeSwitchClick = control => value => {
+		if (value === true){
 			document.body.classList.remove("light");
 			document.body.classList.add("dark");
 			localStorage.setItem("theme", "dark");
@@ -89,19 +96,7 @@ class ThemeSwitcher extends React.Component {
 		}
 	}
 
-	render(){
-		return(
-			<div className="toggle-switch__container">
-				<p>Dark</p>
-				<span>
-				<label className="switch">
-				<input onClick={this.handleThemeSwitchClick.bind(this)} id="theme-switch" type="checkbox"></input>
-				<span className="slider round"></span>
-				<p>Light</p>
-				</label>
-				</span>
-			</div>
-		);
-	}
+
 }
+
 

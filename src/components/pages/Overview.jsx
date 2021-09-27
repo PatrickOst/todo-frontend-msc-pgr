@@ -254,18 +254,3 @@ class ViewSortedByImportance extends React.Component {
 	}
 }
 
-window.onLoad = checkTheme();
-
-function checkTheme(){
-	const localStorageTheme = localStorage.getItem("theme");
-
-	if(localStorageTheme !== null && localStorageTheme === "dark"){
-		document.body.className = localStorageTheme;
-		if(document.getElementById("theme-switch") !== null) {
-			const themeSwitch = document.getElementById("theme-switch");
-			themeSwitch.checked = true;
-		} else{
-			localStorage.setItem("theme", "light") // TODO marc: Ungehung von Bug, falls theme-switch null ist. --> anschauen
-		}
-	}
-}
