@@ -98,8 +98,14 @@ export class AppbarOverview extends React.Component {
 			localStorage.setItem("theme", "light");
 		}
 	}
+}
 
-
+window.onload = function () {
+	if (localStorage.getItem("theme") != "dark" && localStorage.getItem("theme") != "light"){
+		document.body.classList.add("light");
+		document.body.classList.remove("dark");
+		localStorage.setItem("theme", "light");
+	}
 }
 
 
