@@ -3,7 +3,7 @@ import './TextInput.css'
 
 export const ThemeSwitcher = ({ onChange, check, disabled, ...rest }) => (
 	<div>
-		<p>Dark</p>
+		<p>Dark | Light</p>
 		<span>
 			<label className="switch">
 					<p>{check}</p>
@@ -16,7 +16,6 @@ export const ThemeSwitcher = ({ onChange, check, disabled, ...rest }) => (
 				<span className="slider round"></span>
 			</label>
 		</span>
-		<p>Light</p>
 	</div>
 
 )

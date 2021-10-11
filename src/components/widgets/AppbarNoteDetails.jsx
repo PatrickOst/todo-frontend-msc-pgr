@@ -16,7 +16,7 @@ export class AppbarNoteDetails extends React.Component {
                         activeClassName="appbar__link--active"
                         exact
                     >
-                        Back to Overview
+                        HOME
                     </NavLink>
                 </nav>
                 <ThemeSwitcher

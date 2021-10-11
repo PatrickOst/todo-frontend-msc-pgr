@@ -24,15 +24,16 @@ export class AppbarOverview extends React.Component {
 	render() {
 		return (
 			<div className="appbar__container">
+				<NavLink
+					to="/newNote"
+					className="appbar-createnote__link"
+					activeClassName="appbar__link--active"
+					exact
+				>
+					+
+				</NavLink>
 				<nav className="appbar__nav">
-					<NavLink
-						to="/newNote"
-						className="appbar__link"
-						activeClassName="appbar__link--active"
-						exact
-					>
-						Create Note
-					</NavLink>
+					<div className="appbar__sort-description">SORT BY</div>
 					<NavLink
 						onClick={this.handleSortedByClick.bind(this,"finishDate")}
 						to="/"
@@ -40,7 +41,7 @@ export class AppbarOverview extends React.Component {
 						activeClassName="appbar__link--active"
 						exact
 					>
-						By finish Date
+						FINISH DATE
 					</NavLink>
 					<NavLink
 						onClick={this.handleSortedByClick.bind(this,"createdDate")}
@@ -49,7 +50,7 @@ export class AppbarOverview extends React.Component {
 						activeClassName="appbar__link--active"
 						exact
 					>
-						By created Date
+						CREATED DATE
 					</NavLink>
 					<NavLink
 						onClick={this.handleSortedByClick.bind(this, "Importance")}
@@ -58,8 +59,9 @@ export class AppbarOverview extends React.Component {
 						activeClassName="appbar__link--active"
 						exact
 					>
-						By Importance
+						IMPORTANCE
 					</NavLink>
+					<div className="appbar__filter-description">FILTER</div>
 					<NavLink
 						to="/"
 						onClick={this.handleShowFinishedClick.bind(this)}
@@ -67,10 +69,11 @@ export class AppbarOverview extends React.Component {
 						activeClassName="appbar__link--active"
 						exact
 					>
-						Show finished
+						SHOW FINISHED
 					</NavLink>
 				</nav>
 				<ThemeSwitcher
+					className="appbar_themeSwitcher"
 					defaultChecked = {this.getTheme()}
 					onChange={this.handleThemeSwitchClick("ThemeSwitcher")}
 				/>
