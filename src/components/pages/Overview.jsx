@@ -109,29 +109,31 @@ class NotesOverview extends Component {
 			<div className="overview__container">
 				{this.getSortedAndFilteredNotes(notes).map(u => (
 					<Fragment key={u.id}>
-						<div>{this.textErledigenBis(u.erledigenBis)}</div>
-						<input className="note-title__container" type='text' name='title' placeholder='Note title' value={u.title} readOnly></input>
-						<StarRatings
-							rating={Number(u.prio)}
-							starRatedColor="MediumSeaGreen"
-							starEmptyColor="grey"
-							starHoverColor="MediumSeaGreen"
-							starDimension="15px"
-							numberOfStars={5}
-							name='rating'
-						/>
-						<CheckBox
-							value={u.erledigt}
-							checked = {u.erledigt}
-							onChange={this.updateErledigt(u.id)}
-						/>
-						<textarea className="note-description__container" placeholder='Note text' readOnly>{u.beschreibung}</textarea>
-						<Link to={`/note/${u.id}`}>Bearbeiten</Link>
-
+						<div className="singlenote__container">
+							<div className="finishdate__container">{this.textErledigenBis(u.erledigenBis)}</div>
+							<input className="note-title__container" type='text' name='title' placeholder='Note title' value={u.title} readOnly></input>
+							<StarRatings
+								rating={Number(u.prio)}
+								starRatedColor="MediumSeaGreen"
+								starEmptyColor="grey"
+								starHoverColor="MediumSeaGreen"
+								starDimension="15px"
+								numberOfStars={5}
+								name='rating'
+							/>
+							<CheckBox
+								className="finishedbox__container"
+								value={u.erledigt}
+								checked = {u.erledigt}
+								onChange={this.updateErledigt(u.id)}
+							/>
+							<textarea className="note-description__container" placeholder='Note text' readOnly>{u.beschreibung}</textarea>
+							<Link to={`/note/${u.id}`} className="modifynote__container">Bearbeiten</Link>
+						</div>
 					</Fragment>
 				))}
 			</div>
-		)
+		);
 	}
 }
 

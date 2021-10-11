@@ -7,7 +7,6 @@ import { AppbarOverview } from './widgets/AppbarOverview'
 
 export const App = () => (
 	<div>
-		{/*<AppbarOverview />*/}
 		<main className="app__main">
 			<Switch>
 				<Route key="Overview" exact path="/" component={Overview} />

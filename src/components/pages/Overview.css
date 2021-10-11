@@ -1,4 +1,63 @@
 .overview__container {
+	padding: 20px;;
+}
+
+.singlenote__container{
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	/*grid-template-columns: repeat(3, 1fr);*/
+	grid-template-columns: auto auto auto;
+	margin-top: 20px;
+	justify-content: center;
+}
+
+/*textarea, input{*/
+/*	margin-left: 10px;*/
+/*	margin-right: 10px;*/
+/*}*/
+
+.note-title__container, .note-description__container{
+	margin-left: 20px;
+	margin-right: 20px;
+	width: 500px;
+	padding: 5px;
+	border: none;
+}
+
+.note-description__container{
+	height: 100px;
+	background: var(--note-description-background);
+}
+
+.note-title__container{
+	background: var(--note-title-background);
+	font-size: 1em;
+}
+
+.modifynote__container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	background: var(--modifynote-background);
+	height: 50px;
+	width: 150px;
+	text-decoration: none;
+	color: white;
+	font-size: 1em;
+}
+
+.modifynote__container:hover{
+	background: #3BB8AF;
+}
+
+.finishdate__container{
+	margin-left: 50px;
+	width: 150px;
+}
+
+.finishedbox__container{
+	height: 30px;
+	width: 30px;
+	margin-top: 30px;
+	margin-left: 50px;
 }

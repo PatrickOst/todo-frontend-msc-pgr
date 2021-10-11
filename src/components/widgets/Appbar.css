@@ -2,19 +2,42 @@
 	display: flex;
 	background-color: var(--appbar-background-color);
 	justify-content: space-between;
+	padding: 0px 20px 0px 0px;
+	height: 100px;
+}
+
+nav{
+	display: flex;
+	justify-content: center;
 }
 
 .appbar__nav {
 	display: flex;
-	padding: 20px 50px;
+	/*padding: 0px 50px 0px;*/
 	font-size: 20px;
 	/*background: #1d3557;*/
-	box-shadow: 0 0 5px #1d3557;
+	/*box-shadow: 0 0 5px #1d3557;*/
 	/*background-color: var(--nav-background-color);*/
 }
 
+.appbar__sort-description, .appbar__filter-description{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: -10px;
+	margin-right: 5px;
+	font-size: 15px;
+	color: hsl(146, 68%, 55%);
+	/*linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));*/
+}
+
+.appbar__filter-description{
+	margin-left: 30px;
+}
+
 .appbar__link {
-	margin: 0 10px;
+	/*margin: 20px 10px;*/
+	padding: 30px 10px 30px;
 	font-size: 20px;
 	text-decoration: none;
 	color: #f1faee;
@@ -22,21 +45,40 @@
 
 .appbar__link:hover {
 	color: #a8dadc;
+	background-color: #3C3F41;
+	/*background-color: #3CB371;*/
 }
 
-.appbar__link--active {
-	color: #a8dadc;
+.appbar-createnote__link{
+	display: flex;
+	justify-content: center;
+	padding: 10px 20px 30px;
+	font-size: 50px;
+	text-decoration: none;
+	color: #f1faee;
+	width: 70px
 }
+
+.appbar-createnote__link:hover {
+	color: #a8dadc;
+	background-color: #3C3F41;
+	/*background-color: #3CB371;*/
+}
+/*.appbar__link:active{*/
+/*	background-color: red;*/
+/*}*/
+
+
+/*.appbar__link--active {*/
+/*	color: #a8dadc;*/
+/*	background-color: green;*/
+/*}*/
 
 /* Style Switcher */
 
 body{
 	background-color: var(--main-background-color);
 	color: var(--main-font);
-}
-
-.toggle-switch {
-	display: flex;
 }
 
 .dark {
@@ -49,18 +91,27 @@ body{
 	--button-font: black;
 
 	--appbar-background-color: #2B2B2B;
+
+	--note-title-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+	--modifynote-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+	--note-description-background: white;
 }
 
 .light {
 	--main-background: white;
-	--main-font: black;
-	--div-font: #2B2B2B;
-	--div-background-color: #e7e7e7;
-	--button-background-color: #4CAF50;
-	--button-hover-background: #45a049;
-	--button-font: white;
+	/*--main-font: black;*/
+	/*--div-font: #2B2B2B;*/
+	/*--div-font: #2B2B2B;*/
+	/*--div-background-color: #e7e7e7;*/
+	/*--button-background-color: #4CAF50;*/
+	/*--button-hover-background: #45a049;*/
+	/*--button-font: white;*/
 
-	--appbar-background-color: #1d3557;
+	--appbar-background-color: #6D929B;
+
+	--note-title-background: #C1DAD6;
+	--modifynote-background: #C1DAD6;
+	--note-description-background: F5FAFA;
 }
 
 .switch {
@@ -83,7 +134,7 @@ body{
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: hsl(230, 22%, 74%);;
+	background-color: hsl(230, 22%, 74%);
 	transition: 0.4s;
 }
 
