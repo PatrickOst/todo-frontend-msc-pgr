@@ -3,11 +3,11 @@ import { Redirect, Route, Switch } from 'react-router'
 import './App.css'
 import { Overview } from './pages/Overview'
 import { NoteDetails } from './pages/NoteDetails'
-import { Appbar } from './widgets/Appbar'
+import { AppbarOverview } from './widgets/AppbarOverview'
 
 export const App = () => (
 	<div>
-		<Appbar />
+		{/*<AppbarOverview />*/}
 		<main className="app__main">
 			<Switch>
 				<Route key="Overview" exact path="/" component={Overview} />

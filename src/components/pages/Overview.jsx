@@ -6,11 +6,13 @@ import StarRatings from "react-star-ratings";
 import { CheckBox } from '../controls/CheckBox'
 import {NoteDetails} from "./NoteDetails";
 import moment from "moment";
+import {AppbarOverview} from "../widgets/AppbarOverview";
 
 export class Overview extends Component {
 	render() {
 		return(
 			<div>
+				<AppbarOverview />
 				{(localStorage.getItem("showFinished") == 'on') ? (localStorage.getItem("sortedBy") == 'Importance') ? <ViewSortedByImportanceShowFinished />
 					: (localStorage.getItem("sortedBy") == 'finishDate'? <ViewSortedByFinishDateShowFinished /> :
 						<ViewSortedByCreatedDateShowFinished />) :
