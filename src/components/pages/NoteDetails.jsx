@@ -8,6 +8,7 @@ import moment from "moment"
 import 'moment/locale/de';
 import StarRatings from 'react-star-ratings'
 import {Link} from "react-router-dom";
+import {AppbarNoteDetails} from "../widgets/AppbarNoteDetails";
 
 export class NoteDetails extends Component {
 	state = {
@@ -119,6 +120,7 @@ export class NoteDetails extends Component {
 		const { loading,titleEmpty, note, error } = this.state
 		return (
 			<div>
+				<AppbarNoteDetails />
 				<TextInput
 					label="ID"
 					value={note.id}

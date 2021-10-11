@@ -5,7 +5,7 @@ import {ThemeSwitcher} from "../controls/ThemeSwitcher";
 import {CheckBox} from "../controls/CheckBox";
 
 
-export class Appbar extends React.Component {
+export class AppbarOverview extends React.Component {
 
 	state = { darkFlag: [] }
 
@@ -23,7 +23,7 @@ export class Appbar extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="appbar__container">
 				<nav className="appbar__nav">
 					<NavLink
 						to="/newNote"
@@ -69,11 +69,11 @@ export class Appbar extends React.Component {
 					>
 						Show finished
 					</NavLink>
-					<ThemeSwitcher
-						defaultChecked = {this.getTheme()}
-						onChange={this.handleThemeSwitchClick("ThemeSwitcher")}
-					/>
 				</nav>
+				<ThemeSwitcher
+					defaultChecked = {this.getTheme()}
+					onChange={this.handleThemeSwitchClick("ThemeSwitcher")}
+				/>
 			</div>
 
 		);

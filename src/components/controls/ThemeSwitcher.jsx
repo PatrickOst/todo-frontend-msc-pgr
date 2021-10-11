@@ -5,7 +5,7 @@ export const ThemeSwitcher = ({ onChange, check, disabled, ...rest }) => (
 	<div>
 		<p>Dark</p>
 		<span>
-				<label className="switch">
+			<label className="switch">
 					<p>{check}</p>
 				<input
 					id="theme-switch"
@@ -14,9 +14,9 @@ export const ThemeSwitcher = ({ onChange, check, disabled, ...rest }) => (
 					{...rest}
 				/>
 				<span className="slider round"></span>
-				<p>Light</p>
-				</label>
-				</span>
+			</label>
+		</span>
+		<p>Light</p>
 	</div>
 
 )

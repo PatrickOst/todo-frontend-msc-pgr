@@ -1,9 +1,16 @@
+.appbar__container{
+	display: flex;
+	background-color: var(--appbar-background-color);
+	justify-content: space-between;
+}
+
 .appbar__nav {
+	display: flex;
 	padding: 20px 50px;
 	font-size: 20px;
-	background: #1d3557;
+	/*background: #1d3557;*/
 	box-shadow: 0 0 5px #1d3557;
-	background-color: var(--nav-background-color);
+	/*background-color: var(--nav-background-color);*/
 }
 
 .appbar__link {
@@ -41,7 +48,7 @@ body{
 	--button-hover-background: #DAA03DFF;
 	--button-font: black;
 
-	--nav-background-color: #2B2B2B;
+	--appbar-background-color: #2B2B2B;
 }
 
 .light {
@@ -53,7 +60,7 @@ body{
 	--button-hover-background: #45a049;
 	--button-font: white;
 
-	--nav-background-color: #1d3557;
+	--appbar-background-color: #1d3557;
 }
 
 .switch {
