@@ -95,6 +95,8 @@ body{
 	--note-title-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
 	--modifynote-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
 	--note-description-background: white;
+
+	--button-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
 }
 
 .light {
@@ -112,6 +114,8 @@ body{
 	--note-title-background: #C1DAD6;
 	--modifynote-background: #C1DAD6;
 	--note-description-background: F5FAFA;
+
+	--button-background: #C1DAD6;
 }
 
 .switch {

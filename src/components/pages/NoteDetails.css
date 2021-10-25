@@ -1,3 +1,35 @@
 .notedetails__container{
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
     padding: 20px;
+}
+
+.id__container, .createdDate__container{
+    display: none;
+}
+
+.notedetails-title__container, .notedetails-description__container {
+    width: 400px;
+    height: 30px;
+    margin-bottom: 5px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.notedetails-finishDate-title__container{
+    margin-top: 8px;
+}
+
+.notedetails-finishDate__container{
+    margin: 8px 0 20px;
+}
+
+.notedetails-starratings-title__container{
+    margin: 8px 0;
+    padding: 3px;
 }
