@@ -14,6 +14,7 @@
 	--note-description-background: white;
 	--button-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
 	--note-border-color: #2B2B2B;
+	--appbar-description-color: hsl(146, 68%, 55%);
 }
 
 .light {
@@ -24,4 +25,5 @@
 	--note-description-background: F5FAFA;
 	--button-background: #C1DAD6;
 	--note-border-color: #C1DAD6;
+	--appbar-description-color: black;
 }
