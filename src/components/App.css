@@ -1,3 +1,27 @@
 .app__main {
 	margin: 0px;
 }
+
+.dark {
+	--main-background-color: #3C3F41;
+	--main-font-color: white;
+	--button-background-color: #F2AA4CFF;
+	--button-hover-background: #DAA03DFF;
+	--button-font: black;
+	--appbar-background-color: #2B2B2B;
+	--note-title-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+	--modifynote-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+	--note-description-background: white;
+	--button-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
+	--note-border-color: #2B2B2B;
+}
+
+.light {
+	--main-background: white;
+	--appbar-background-color: #6D929B;
+	--note-title-background: #C1DAD6;
+	--modifynote-background: #C1DAD6;
+	--note-description-background: F5FAFA;
+	--button-background: #C1DAD6;
+	--note-border-color: #C1DAD6;
+}

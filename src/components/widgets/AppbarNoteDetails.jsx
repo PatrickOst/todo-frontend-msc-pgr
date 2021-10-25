@@ -8,11 +8,11 @@ export class AppbarNoteDetails extends React.Component {
 
     render() {
         return (
-            <div className="appbar__container">
-                <nav className="appbar__nav">
+            <div className="appbar-notedetails__container">
+                <nav className="appbar-notedetails__nav">
                     <NavLink
                         to="/"
-                        className="appbar__link"
+                        className="appbar-home__link"
                         activeClassName="appbar__link--active"
                         exact
                     >
