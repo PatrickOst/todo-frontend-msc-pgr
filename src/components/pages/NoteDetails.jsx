@@ -9,6 +9,7 @@ import 'moment/locale/de';
 import StarRatings from 'react-star-ratings'
 import {Link} from "react-router-dom";
 import {AppbarNoteDetails} from "../widgets/AppbarNoteDetails";
+import './NoteDetails.css'
 
 export class NoteDetails extends Component {
 	state = {
@@ -121,46 +122,52 @@ export class NoteDetails extends Component {
 		return (
 			<div>
 				<AppbarNoteDetails />
-				<TextInput
-					label="ID"
-					value={note.id}
-					disabled={true}
-					onChange={this.update('id')}
-				/>
-				<div>Erstellungsdatum</div>
-				<div>{this.insertDateTimePicker("erstelltAm", note.erstelltAm, true)}</div>
-				<TextInput
-					label="Titel"
-					required = {true}
-					value={note.title}
-					disabled={loading}
-					onChange={this.update('title')}
-				/>
-				<TextInput
-					label="Beschreibung"
-					value={note.beschreibung}
-					disabled={loading}
-					onChange={this.update('beschreibung')}
-				/>
-				<StarRatings
-					rating={Number(note.prio)}
-					starRatedColor="MediumSeaGreen"
-					starEmptyColor="grey"
-					starHoverColor="MediumSeaGreen"
-					starDimension="25px"
-					changeRating={this.update('prio')}
-					numberOfStars={5}
-					name='rating'
-				/>
-				<div>Zu erledigen bis</div>
-				<div>{this.insertDateTimePicker("erledigenBis", note.erledigenBis, false)}</div>
-				<Link to={`/`}>
-					<Button disabled={titleEmpty} onClick={() => this.save(note)}>
-						{note.id ? 'Speichern' : 'Erstellen'}
-					</Button>
-					{this.showDeleteButton(note)}
-				</Link>
-				<div>{error}</div>
+				<div className="notedetails__container">
+					<TextInput
+						value={note.id}
+						disabled={true}
+						onChange={this.update('id')}
+						className="id__container"
+					/>
+					<div label="Erstellungsdatum" className="createdDate__container">{this.insertDateTimePicker("erstelltAm", note.erstelltAm, true)}</div>
+					<TextInput
+						label="Titel"
+						required = {true}
+						value={note.title}
+						disabled={loading}
+						onChange={this.update('title')}
+						className="notedetails-title__container"
+
+					/>
+					<TextInput
+						label="Beschreibung"
+						value={note.beschreibung}
+						disabled={loading}
+						onChange={this.update('beschreibung')}
+						className="notedetails-description__container"
+					/>
+					<div className="notedetails-starratings-title__container">Priorität</div>
+					<StarRatings
+						rating={Number(note.prio)}
+						starRatedColor="MediumSeaGreen"
+						starEmptyColor="grey"
+						starHoverColor="MediumSeaGreen"
+						starDimension="25px"
+						changeRating={this.update('prio')}
+						numberOfStars={5}
+						name='rating'
+						className="notedetails-starratings__container"
+					/>
+					<div className="notedetails-finishDate-title__container">Zu erledigen bis</div>
+					<div className="notedetails-finishDate__container">{this.insertDateTimePicker("erledigenBis", note.erledigenBis, false)}</div>
+					<Link to={`/`}>
+						<Button disabled={titleEmpty} onClick={() => this.save(note)}>
+							{note.id ? 'Speichern' : 'Erstellen'}
+						</Button>
+						{this.showDeleteButton(note)}
+					</Link>
+					<div>{error}</div>
+				</div>
 			</div>
 		)
 	}
