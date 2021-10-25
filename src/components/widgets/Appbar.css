@@ -1,4 +1,4 @@
-.appbar__container{
+.appbar__container, .appbar-notedetails__container{
 	display: flex;
 	background-color: var(--appbar-background-color);
 	justify-content: space-between;
@@ -11,13 +11,8 @@ nav{
 	justify-content: center;
 }
 
-.appbar__nav {
-	display: flex;
-	/*padding: 0px 50px 0px;*/
-	font-size: 20px;
-	/*background: #1d3557;*/
-	/*box-shadow: 0 0 5px #1d3557;*/
-	/*background-color: var(--nav-background-color);*/
+.appbar__nav, .appbar-notedetails__nav {
+	/*display: flex;*/
 }
 
 .appbar__sort-description, .appbar__filter-description{
@@ -28,25 +23,27 @@ nav{
 	margin-right: 5px;
 	font-size: 15px;
 	color: hsl(146, 68%, 55%);
-	/*linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));*/
 }
 
 .appbar__filter-description{
 	margin-left: 30px;
 }
 
-.appbar__link {
-	/*margin: 20px 10px;*/
+.appbar__link, .appbar-home__link {
 	padding: 30px 10px 30px;
 	font-size: 20px;
 	text-decoration: none;
 	color: #f1faee;
 }
 
-.appbar__link:hover {
+.appbar-home__link{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.appbar__link:hover, .appbar-home__link:hover {
 	color: #a8dadc;
 	background-color: #3C3F41;
-	/*background-color: #3CB371;*/
 }
 
 .appbar-createnote__link{
@@ -62,7 +59,6 @@ nav{
 .appbar-createnote__link:hover {
 	color: #a8dadc;
 	background-color: #3C3F41;
-	/*background-color: #3CB371;*/
 }
 /*.appbar__link:active{*/
 /*	background-color: red;*/
@@ -76,101 +72,67 @@ nav{
 
 /* Style Switcher */
 
-body{
-	background-color: var(--main-background-color);
-	color: var(--main-font);
+/* Responsiveness */
+
+@media(max-width:1000px){
+	.appbar__container, .appbar-notedetails__container{
+		height: 80px;
+	}
+
+	.switch{
+		margin-top: 20px;
+	}
+
+	.appbar-createnote__link{
+		padding: 0px 20px 10px;
+	}
+
+	.appbar__link, .appbar-home__link {
+		font-size: 15px;
+	}
+
+	.appbar__sort-description, .appbar__filter-description{
+		font-size: 10px;
+	}
+
 }
 
-.dark {
-	--main-background-color: #3C3F41;
-	--main-font: white;
-	--div-font: white;
-	--div-background-color: #101820FF;
-	--button-background-color: #F2AA4CFF;
-	--button-hover-background: #DAA03DFF;
-	--button-font: black;
+@media(max-width:800px){
 
-	--appbar-background-color: #2B2B2B;
+	.appbar__container{
+		height: 250px;
+		width: 100%;
+	}
 
-	--note-title-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
-	--modifynote-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
-	--note-description-background: white;
+	.appbar-notedetails__container{
+		width: 100%;
+	}
 
-	--button-background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
-}
+	.switch{
+		margin-right: 20px;
+	}
 
-.light {
-	--main-background: white;
-	/*--main-font: black;*/
-	/*--div-font: #2B2B2B;*/
-	/*--div-font: #2B2B2B;*/
-	/*--div-background-color: #e7e7e7;*/
-	/*--button-background-color: #4CAF50;*/
-	/*--button-hover-background: #45a049;*/
-	/*--button-font: white;*/
+	.appbar__nav {
+		display: grid;
+		margin-top: 5px;
+		margin-left: -10px;
+	}
 
-	--appbar-background-color: #6D929B;
+	.appbar__link {
+		margin-top: 0px;
+		padding: 5px 5px 5px;
 
-	--note-title-background: #C1DAD6;
-	--modifynote-background: #C1DAD6;
-	--note-description-background: F5FAFA;
+	}
 
-	--button-background: #C1DAD6;
-}
+	.appbar__sort-description, .appbar__filter-description{
+		margin-top: 0px;
+		margin-left: 0px;
+		display: flex;
+		justify-content: left;
+	}
 
-.switch {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 30px;
-	margin-left: 10px;
-	margin-right: 10px;
-}
-
-.switch input {
-	opacity: 0;
-}
-
-.slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: hsl(230, 22%, 74%);
-	transition: 0.4s;
-}
-
-.slider:before {
-	position: absolute;
-	content: "";
-	height: 20px;
-	width: 20px;
-	left: 32px;
-	bottom: 5px;
-	background-color: #fff;
-	transition: 0.4s;
-}
-
-input:checked + .slider {
-	background: linear-gradient(90grad, hsl(210, 78%, 56%), hsl(146, 68%, 55%));
-}
-
-input:checked + .slider:before {
-	transform: translateX(-24px);
-}
-
-.slider,
-.round {
-	border-radius: 34px;
-}
-
-.round::before {
-	border-radius: 50%;
-}
-
-input:checked + .round::before {
-	background-color: hsl(230, 17%, 14%);
+	.appbar__filter-description{
+		margin-left: 0px;
+	}
 }
 

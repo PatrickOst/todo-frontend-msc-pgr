@@ -112,15 +112,17 @@ class NotesOverview extends Component {
 						<div className="singlenote__container">
 							<div className="finishdate__container">{this.textErledigenBis(u.erledigenBis)}</div>
 							<input className="note-title__container" type='text' name='title' placeholder='Note title' value={u.title} readOnly></input>
-							<StarRatings
-								rating={Number(u.prio)}
-								starRatedColor="MediumSeaGreen"
-								starEmptyColor="grey"
-								starHoverColor="MediumSeaGreen"
-								starDimension="15px"
-								numberOfStars={5}
-								name='rating'
-							/>
+							<div className="starratings__container">
+								<StarRatings
+									rating={Number(u.prio)}
+									starRatedColor="MediumSeaGreen"
+									starEmptyColor="grey"
+									starHoverColor="MediumSeaGreen"
+									starDimension="15px"
+									numberOfStars={5}
+									name='rating'
+								/>
+							</div>
 							<CheckBox
 								className="finishedbox__container"
 								value={u.erledigt}

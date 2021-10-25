@@ -33,3 +33,11 @@
     margin: 8px 0;
     padding: 3px;
 }
+
+/* Responsiveness */
+
+@media(max-width:800px){
+    .notedetails-title__container, .notedetails-description__container {
+        width: 350px;
+    }
+}
