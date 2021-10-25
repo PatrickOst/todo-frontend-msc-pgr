@@ -22,7 +22,7 @@ nav{
 	margin-top: -10px;
 	margin-right: 5px;
 	font-size: 15px;
-	color: hsl(146, 68%, 55%);
+	color: var(--appbar-description-color);
 }
 
 .appbar__filter-description{

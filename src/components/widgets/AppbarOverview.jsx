@@ -11,13 +11,31 @@ export class AppbarOverview extends React.Component {
 
 	handleSortedByClick = (sortedBy) => {
 		localStorage.setItem("sortedBy", sortedBy);
+		if (localStorage.getItem("sortedBy") === "finishDate") {
+			this.focusColor("appbar-sortedby-finishdate");
+			this.revertColor("appbar-sortedby-createddate");
+			this.revertColor("appbar-sortedby-importance");
+		}
+		else if (localStorage.getItem("sortedBy") === "createdDate"){
+			this.focusColor("appbar-sortedby-createddate");
+			this.revertColor("appbar-sortedby-finishdate");
+			this.revertColor("appbar-sortedby-importance");
+		} else if (localStorage.getItem("sortedBy") === "Importance"){
+			this.focusColor("appbar-sortedby-importance");
+			this.revertColor("appbar-sortedby-finishdate");
+			this.revertColor("appbar-sortedby-createddate");
+		}
 	}
 
 	handleShowFinishedClick (){
 		if(localStorage.getItem("showFinished") === null || localStorage.getItem("showFinished") === "off"){
-			localStorage.setItem("showFinished", "on")}
+			localStorage.setItem("showFinished", "on")
+			this.focusColor("appbar-showfinished");
+		}
+
 		else{
 			localStorage.setItem("showFinished", "off");
+			this.revertColor("appbar-showfinished");
 		}
 	}
 
@@ -37,6 +55,7 @@ export class AppbarOverview extends React.Component {
 					<NavLink
 						onClick={this.handleSortedByClick.bind(this,"finishDate")}
 						to="/"
+						id="appbar-sortedby-finishdate"
 						className="appbar__link"
 						activeClassName="appbar__link--active"
 						exact
@@ -46,6 +65,7 @@ export class AppbarOverview extends React.Component {
 					<NavLink
 						onClick={this.handleSortedByClick.bind(this,"createdDate")}
 						to="/"
+						id="appbar-sortedby-createddate"
 						className="appbar__link"
 						activeClassName="appbar__link--active"
 						exact
@@ -55,6 +75,7 @@ export class AppbarOverview extends React.Component {
 					<NavLink
 						onClick={this.handleSortedByClick.bind(this, "Importance")}
 						to="/"
+						id="appbar-sortedby-importance"
 						className="appbar__link"
 						activeClassName="appbar__link--active"
 						exact
@@ -65,6 +86,7 @@ export class AppbarOverview extends React.Component {
 					<NavLink
 						to="/"
 						onClick={this.handleShowFinishedClick.bind(this)}
+						id="appbar-showfinished"
 						className="appbar__link"
 						activeClassName="appbar__link--active"
 						exact
@@ -97,6 +119,14 @@ export class AppbarOverview extends React.Component {
 			document.body.classList.remove("dark");
 			localStorage.setItem("theme", "light");
 		}
+	}
+
+	revertColor = function (element){
+		document.getElementById(element).style.background = "none";
+	}
+
+	focusColor = function (element){
+		document.getElementById(element).style.background = "#3C3F41";
 	}
 }
 

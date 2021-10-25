@@ -51,7 +51,7 @@ class NotesOverview extends Component {
 			} else if(localStorage.getItem("sortedBy") == 'createdDate'){
 				return notes.filter(a => a.erledigt == true).sort((a, b) => a.erstelltAm > b.erstelltAm ? 1:-1);
 			} else{
-				return notes.filter(a => a.erledigt == true).sort((a, b) => a.prio > b.prio ? 1:-1);
+				return notes.filter(a => a.erledigt == true).sort((a, b) => a.prio < b.prio ? 1:-1);
 			}
 		} else{
 			if(localStorage.getItem("sortedBy") == 'finishDate'){
@@ -59,7 +59,7 @@ class NotesOverview extends Component {
 			} else if(localStorage.getItem("sortedBy") == 'createdDate'){
 				return notes.sort((a, b) => a.erstelltAm > b.erstelltAm ? 1:-1);
 			} else{
-				return notes.sort((a, b) => a.prio > b.prio ? 1:-1);
+				return notes.sort((a, b) => a.prio < b.prio ? 1:-1);
 			}
 		}
 
