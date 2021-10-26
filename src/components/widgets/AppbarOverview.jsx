@@ -135,6 +135,7 @@ window.onload = function () {
 		document.body.classList.add("light");
 		document.body.classList.remove("dark");
 		localStorage.setItem("theme", "light");
+		window.location.reload();
 	}
 }
 
