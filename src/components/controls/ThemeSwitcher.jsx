@@ -3,7 +3,7 @@ import './ThemeSwitcher.css'
 
 export const ThemeSwitcher = ({ onChange, check, disabled, ...rest }) => (
 	<div>
-		<p className="theme-switcher-title__container">Dark | Light</p>
+		<p>Dark | Light</p>
 		<span>
 			<label className="switch">
 					<p>{check}</p>

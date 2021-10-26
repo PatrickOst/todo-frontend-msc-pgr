@@ -11,10 +11,6 @@ nav{
 	justify-content: center;
 }
 
-.appbar__nav, .appbar-notedetails__nav {
-	/*display: flex;*/
-}
-
 .appbar__sort-description, .appbar__filter-description{
 	display: flex;
 	justify-content: center;
@@ -60,17 +56,6 @@ nav{
 	color: #a8dadc;
 	background-color: #3C3F41;
 }
-/*.appbar__link:active{*/
-/*	background-color: red;*/
-/*}*/
-
-
-/*.appbar__link--active {*/
-/*	color: #a8dadc;*/
-/*	background-color: green;*/
-/*}*/
-
-/* Style Switcher */
 
 /* Responsiveness */
 

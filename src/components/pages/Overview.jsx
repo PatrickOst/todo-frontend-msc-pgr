@@ -4,8 +4,6 @@ import { NotesUrl } from '../../models/note'
 import './Overview.css'
 import StarRatings from "react-star-ratings";
 import { CheckBox } from '../controls/CheckBox'
-import {NoteDetails} from "./NoteDetails";
-import moment from "moment";
 import {AppbarOverview} from "../widgets/AppbarOverview";
 
 export class Overview extends Component {
@@ -14,10 +12,6 @@ export class Overview extends Component {
 			<div>
 				<AppbarOverview />
 				<NotesOverview />
-
-				{console.log(localStorage.getItem("sortedBy"))}
-				{console.log(localStorage.getItem("theme"))}
-				{console.log(localStorage.getItem("showFinished"))}
 			</div>
 		);
 	}
@@ -103,8 +97,6 @@ class NotesOverview extends Component {
 
 	render() {
 		const { notes } = this.state
-
-
 		return (
 			<div className="overview__container">
 				{this.getSortedAndFilteredNotes(notes).map(u => (

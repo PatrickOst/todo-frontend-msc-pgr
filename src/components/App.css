@@ -2,6 +2,8 @@
 	margin: 0px;
 }
 
+/* Theme Configuration */
+
 .dark {
 	--main-background-color: #3C3F41;
 	--main-font-color: white;
