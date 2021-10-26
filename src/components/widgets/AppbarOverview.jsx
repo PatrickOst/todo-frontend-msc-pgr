@@ -20,7 +20,8 @@ export class AppbarOverview extends React.Component {
 			this.focusColor("appbar-sortedby-createddate");
 			this.revertColor("appbar-sortedby-finishdate");
 			this.revertColor("appbar-sortedby-importance");
-		} else if (localStorage.getItem("sortedBy") === "Importance"){
+		}
+		else if (localStorage.getItem("sortedBy") === "Importance"){
 			this.focusColor("appbar-sortedby-importance");
 			this.revertColor("appbar-sortedby-finishdate");
 			this.revertColor("appbar-sortedby-createddate");
@@ -32,7 +33,6 @@ export class AppbarOverview extends React.Component {
 			localStorage.setItem("showFinished", "on")
 			this.focusColor("appbar-showfinished");
 		}
-
 		else{
 			localStorage.setItem("showFinished", "off");
 			this.revertColor("appbar-showfinished");
