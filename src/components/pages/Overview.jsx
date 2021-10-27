@@ -39,18 +39,18 @@ class NotesOverview extends Component {
 	}
 
 	getSortedAndFilteredNotes(notes){
-		if(localStorage.getItem("showFinished") == 'on'){
-			if(localStorage.getItem("sortedBy") == 'finishDate'){
-				return notes.filter(a => a.erledigt == true).sort((a, b) => a.erledigenBis > b.erledigenBis ? 1:-1);
-			} else if(localStorage.getItem("sortedBy") == 'createdDate'){
-				return notes.filter(a => a.erledigt == true).sort((a, b) => a.erstelltAm > b.erstelltAm ? 1:-1);
+		if(localStorage.getItem("showFinished") === 'on'){
+			if(localStorage.getItem("sortedBy") === 'finishDate'){
+				return notes.filter(a => a.erledigt === true).sort((a, b) => a.erledigenBis > b.erledigenBis ? 1:-1);
+			} else if(localStorage.getItem("sortedBy") === 'createdDate'){
+				return notes.filter(a => a.erledigt === true).sort((a, b) => a.erstelltAm > b.erstelltAm ? 1:-1);
 			} else{
-				return notes.filter(a => a.erledigt == true).sort((a, b) => a.prio < b.prio ? 1:-1);
+				return notes.filter(a => a.erledigt === true).sort((a, b) => a.prio < b.prio ? 1:-1);
 			}
 		} else{
-			if(localStorage.getItem("sortedBy") == 'finishDate'){
+			if(localStorage.getItem("sortedBy") === 'finishDate'){
 				return notes.sort((a, b) => a.erledigenBis > b.erledigenBis ? 1:-1);
-			} else if(localStorage.getItem("sortedBy") == 'createdDate'){
+			} else if(localStorage.getItem("sortedBy") === 'createdDate'){
 				return notes.sort((a, b) => a.erstelltAm > b.erstelltAm ? 1:-1);
 			} else{
 				return notes.sort((a, b) => a.prio < b.prio ? 1:-1);

@@ -3,7 +3,6 @@ import { Redirect, Route, Switch } from 'react-router'
 import './App.css'
 import { Overview } from './pages/Overview'
 import { NoteDetails } from './pages/NoteDetails'
-import { AppbarOverview } from './widgets/AppbarOverview'
 
 export const App = () => (
 	<div>

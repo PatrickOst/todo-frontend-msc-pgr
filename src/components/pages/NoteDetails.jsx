@@ -54,34 +54,20 @@ export class NoteDetails extends Component {
 	save = async note => {
 		console.log("save runs")
 		this.setState({ error:'', loading: true })
-		const response = await fetch(`${NotesUrl}/${note.id ?? ''}`, {
+		await fetch(`${NotesUrl}/${note.id ?? ''}`, {
 			method: note.id ? 'put' : 'post',
 			headers: new Headers({'content-type':'application/json'}),
 			body: JSON.stringify(note)
 		})
-		if (response.status >= 300) {
-			this.setState({ error: 'Fehler aufgetreten!', loading: false })
-		} else {
-			const update = await response.json()
-			const notes = Object.assign(this.state.note, update)
-			this.setState({ error: 'Erfolgreich gespeichert', loading: false, notes })
-		}
 	}
 
 	deleting = async note => {
 		this.setState({ error:'', loading: true })
-		const response = await fetch(`${NotesUrl}/delete/${note.id ?? ''}`, {
+		await fetch(`${NotesUrl}/delete/${note.id ?? ''}`, {
 			method: 'put',
 			headers: new Headers({'content-type':'application/json'}),
 			body: JSON.stringify(note)
 		})
-		if (response.status >= 300) {
-			this.setState({ error: 'Fehler aufgetreten!', loading: false })
-		} else {
-			const update = await response.json()
-			const notes = Object.assign(this.state.note, update)
-			this.setState({ error: 'Erfolgreich gelöscht', loading: false, notes })
-		}
 	}
 
 	insertDateTimePicker = (target, value, disabled) => {
