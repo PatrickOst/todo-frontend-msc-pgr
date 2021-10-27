@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './Appbar.css'
 import {ThemeSwitcher} from "../controls/ThemeSwitcher";
-import {CheckBox} from "../controls/CheckBox";
 
 
 export class AppbarOverview extends React.Component {
@@ -131,7 +130,7 @@ export class AppbarOverview extends React.Component {
 }
 
 window.onload = function () {
-	if (localStorage.getItem("theme") != "dark" && localStorage.getItem("theme") != "light"){
+	if (localStorage.getItem("theme") !== "dark" && localStorage.getItem("theme") !== "light"){
 		document.body.classList.add("light");
 		document.body.classList.remove("dark");
 		localStorage.setItem("theme", "light");
