@@ -20,6 +20,11 @@
     box-sizing: border-box;
 }
 
+.title__required__message{
+    color: crimson;
+    margin-bottom: 5px;
+}
+
 .notedetails-finishDate-title__container{
     margin-top: 8px;
 }

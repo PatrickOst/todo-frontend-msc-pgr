@@ -104,8 +104,11 @@ export class AppbarOverview extends React.Component {
 	}
 
 	getTheme(){
-		document.body.classList.add(localStorage.getItem("theme").toString());
-		return (localStorage.getItem("theme").toString()==="light" ? false : true)
+
+		document.body.classList.add(localStorage.getItem("theme"));
+		console.log(localStorage.getItem("theme"));
+
+		return (localStorage.getItem("theme")==="light" ? false : true)
 	}
 
 	handleThemeSwitchClick = control => value => {
