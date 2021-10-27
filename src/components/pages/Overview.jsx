@@ -121,7 +121,7 @@ class NotesOverview extends Component {
 								checked = {u.erledigt}
 								onChange={this.updateErledigt(u.id)}
 							/>
-							<input className="note-description__container" type='text' placeholder='Note text' value={u.beschreibung} readOnly></input>
+							<textarea className="note-description__container" type='text' placeholder='Note text' value={u.beschreibung} readOnly></textarea>
 							<Link to={`/note/${u.id}`} className="modifynote__container">Bearbeiten</Link>
 						</div>
 					</Fragment>
