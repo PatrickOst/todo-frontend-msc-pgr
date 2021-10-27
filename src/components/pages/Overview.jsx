@@ -17,7 +17,7 @@ export class Overview extends Component {
 	}
 }
 
-class NotesOverview extends Component {
+export class NotesOverview extends Component {
 
 	state = { notes: [] }
 
@@ -56,7 +56,6 @@ class NotesOverview extends Component {
 				return notes.sort((a, b) => a.prio < b.prio ? 1:-1);
 			}
 		}
-
 	}
 
 	save = async (index) => {
@@ -85,15 +84,24 @@ class NotesOverview extends Component {
 	textErledigenBis (pDate) {
 		const dateFormat = new Date(pDate);
 		switch (dateFormat.getDate()){
+
 			case (new Date().getDate()):    pDate = "Heute";         break;
 			case (new Date().getDate()+1):  pDate = "Morgen";        break;
 			case (new Date().getDate()+2):  pDate = "Übermorgen";    break;
 			case (new Date().getDate()-1):  pDate = "Gestern";       break;
 			case (new Date().getDate()-2):  pDate = "Vorgestern";    break;
-			default: pDate = dateFormat.toLocaleDateString();
+			default: {
+				const heute = new Date();
+				if(dateFormat < heute){
+					pDate = "Überfällig";
+				}else{
+					pDate = "Irgendwann";
+				}
+			}
 		}
 		return pDate;
 	}
+
 
 	render() {
 		const { notes } = this.state

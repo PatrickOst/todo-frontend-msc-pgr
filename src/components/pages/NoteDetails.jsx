@@ -49,6 +49,19 @@ export class NoteDetails extends Component {
 
 	releaseOrLockSaveButton(){
 			this.setState({ titleEmpty: (this.state.note.title.length < 1 ? true : false) })
+			console.log(this.state.titleEmpty);
+	}
+
+	renderTitleEmpty(){
+		if(this.state.titleEmpty){
+			return(
+				<div className="title__required__message">Titel zwingend erforderlich !</div>
+			)
+		}else{
+			return(
+				<div></div>
+			)
+		}
 	}
 
 	save = async note => {
@@ -123,8 +136,8 @@ export class NoteDetails extends Component {
 						disabled={loading}
 						onChange={this.update('title')}
 						className="notedetails-title__container"
-
 					/>
+					<div>{this.renderTitleEmpty()}</div>
 					<TextInput
 						label="Beschreibung"
 						value={note.beschreibung}
@@ -152,7 +165,9 @@ export class NoteDetails extends Component {
 						</Button>
 						{this.showDeleteButton(note)}
 					</Link>
+
 					<div>{error}</div>
+
 				</div>
 			</div>
 		)
