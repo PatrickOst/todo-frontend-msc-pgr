@@ -1,26 +1,39 @@
-
 import React from "react";
-import { render, screen} from '@testing-library/react'
-
-import ReactDOM from 'react-dom'
-import '../index.css'
-import { App } from '../components/App'
-import {BrowserRouter} from "react-router-dom";
+import { render, unmountComponentAtNode } from "react-dom";
+import { act } from "react-dom/test-utils";
+import App from "../components/App";
 import {Overview} from "../components/pages/Overview";
 
-/*ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
-)
- */
+let container = null;
+beforeEach(() => {
+    // setup a DOM element as a render target
+    container = document.createElement("div");
+    document.body.appendChild(container);
+});
 
+afterEach(() => {
+    // cleanup on exiting
+    unmountComponentAtNode(container);
+    container.remove();
+    container = null;
+});
 
-    test('render learn react link', () => {
-        //console.log(document.getElementById('root'));
+it("renders with or without a name", () => {
 
-        console.log("Nach 5 Stunden zu zweit mussten wir wegen einem Render Problem (Target container is not a DOM element.) das Testing leider abbrechen. Durch unsere geringen Vorkenntnisse war das für uns nicht möglich. Auch das entfernen von ReactDOM hat leider nicht funktioniert.");
+    console.log("Nach 5 Stunden zu zweit mussten wir wegen einem Render Problem (Target container is not a DOM element.) das Testing leider abbrechen. Durch unsere geringen Vorkenntnisse war das für uns nicht möglich. Auch das entfernen von ReactDOM hat leider nicht funktioniert.");
+
+    /*
+    console.log("Start Testing")
+    act(() => {
+        render(<Overview />, container);
     });
+    //container.findByText("Note Title");
+    //console.log(document.getElementById("17"));
+    let d = document.getElementsByClassName("appbar__container");
+    console.log(document.getElementsByClassName("appbar__container").namedItem(""))
+    //expect(document.querySelector("div").className).toBe("appbar__container")
+    //expect(container.textContent).toBe("Hello, Margaret!");
+    console.log("End Testing")
+     */
+
+});
